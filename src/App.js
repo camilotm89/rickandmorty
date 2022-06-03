@@ -1,23 +1,29 @@
-import logo from './logo.svg';
 import './App.css';
+import './styles.css'
+import axios from 'axios';
+import { useState, useEffect } from 'react';
+
+
+import Grid from './components/grid';
 
 function App() {
+
+  const [character, setCharacter] = useState([]);
+
+  const getData = async () => {
+    const res = await axios.get("https://rickandmortyapi.com/api/character");
+
+    setCharacter(res.data);
+  } 
+
+  useEffect(() => {
+    getData();
+  }, [])
+  
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <h1>Rick and Morty</h1>
+      <Grid character={character} />
     </div>
   );
 }
