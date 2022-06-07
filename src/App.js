@@ -1,5 +1,6 @@
 import './App.css';
-import './styles.css'
+import './styles.css';
+import logo from './Rick_and_Morty.svg'
 import axios from 'axios';
 import { useState, useEffect } from 'react';
 
@@ -22,7 +23,7 @@ function App() {
   
   return (
     <div className="App">
-      <h1>Rick and Morty</h1>
+      <img src={logo} alt="" className='logo'/>
       <Grid character={character} />
     </div>
   );
